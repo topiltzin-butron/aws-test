@@ -3,6 +3,7 @@ package xyz.cafeconleche.web.aws.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @PropertySource("classpath:application.properties")
 @ComponentScan({ "xyz.cafeconleche.web.aws.**" })
+@Import({ SpringSwaggerConfig.class, SpringDynamoDBConfig.class })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -30,10 +32,15 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+		
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
+	
 }

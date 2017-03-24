@@ -19,7 +19,9 @@
 		</div>
 		<div id="menu">
 			<a href="${pageContext.request.contextPath}" >Home</a> | 
-			<a href="http://topi.cafeconleche.xyz" target="_blank">Website</a>
+			<a href="http://topi.cafeconleche.xyz" target="_blank">Website</a> | 
+			<a href="${pageContext.request.contextPath}/swagger-ui.html" >Swagger UI</a> | 
+			<a href="${pageContext.request.contextPath}/v2/api-docs" >API DOCS</a>
 		</div>
 		<div id="content">
 			<h2>Welcome</h2>
